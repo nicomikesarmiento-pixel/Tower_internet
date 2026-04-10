@@ -1,44 +1,26 @@
 #!/bin/bash
 
-# --- SARMIENTO AI: UNIVERSAL TOWER ENGINE ---
-echo "Inilulunsad ang Sarmiento AI Universal Tower..."
+# --- SARMIENTO AI: FULL TOWER INSTALLER ---
+echo "Inilulunsad ang Sarmiento AI Full Setup..."
 
-# 1. Siguraduhin na may power ang rish
-chmod +x rish
+# 1. Automatic Cleanup (Para walang conflict sa lumang files)
+rm -rf rish rish_shizuku.dex tower.sh
 
-# 2. Injection via Shizuku Shell
-./rish <<EOF
-# --- STEP A: HOTSPOT CONTROL ---
-# Pinapa-ON ang Hotspot para ikaw ang maging "Sub-Station"
-cmd ip_tethering start
+# 2. I-set ang ID para kay Shizuku
+export RISH_APPLICATION_ID="com.termux"
 
-# --- STEP B: PORTAL BYPASS LOGIC (Universal) ---
-# Pinapatay natin ang 'Captive Portal Detection' ng Android.
-# Ibig sabihin, hindi na mag-a-ask ang phone ng 'Sign in to network'
-# at papayagan ang data na dumaan kahit hindi pa naghuhulog.
-settings put global captive_portal_detection_enabled 0
-settings put global captive_portal_mode 0
-settings put global captive_portal_server localhost
-settings put global captive_portal_http_url http://google.com/generate_204
-settings put global captive_portal_https_url https://google.com/generate_204
+# 3. I-download ang lahat ng components mula sa repo mo
+echo "Downloading engine components..."
+wget -q https://raw.githubusercontent.com/nicomikesarmiento-pixel/Tower_internet/main/rish
+wget -q https://raw.githubusercontent.com/nicomikesarmiento-pixel/Tower_internet/main/rish_shizuku.dex
+wget -q https://raw.githubusercontent.com/nicomikesarmiento-pixel/Tower_internet/main/tower.sh
 
-# --- STEP C: SIGNAL & DATA BRIDGE ---
-# Para lumabas ang Full Bars (VoWiFi) sa lahat ng sasagap sayo
-settings put global wfc_ims_enabled 1
-settings put global wfc_ims_mode 2
-settings put global wifi_sharing_state 1
+# 4. Bigyan ng permission ang mga files
+chmod +x rish tower.sh
 
-# --- STEP D: DATA TUNNELING (Proxy Bridge) ---
-# Dito dadaan ang 'No-Hulog' data. 
-# Siguraduhin na may tumatakbong DNS Tunnel (dnstt) sa Termux mo sa port 8080.
-settings put global http_proxy 127.0.0.1:8080
-settings put global global_http_proxy_host 127.0.0.1
-settings put global global_http_proxy_port 8080
-
-echo "------------------------------------------------"
-echo "  SARMIENTO AI: UNIVERSAL TOWER IS ACTIVE 📶    "
-echo "  Mode: No-Hulog / Portal Bypass Enabled        "
-echo "  Status: Hijacking All Connected WiFi...       "
-echo "------------------------------------------------"
-EOF
-
+echo "----------------------------------------"
+echo "   SETUP COMPLETE, NICO SARMIENTO!      "
+echo "----------------------------------------"
+echo "Para simulan ang Tower, itipa ang:"
+echo "sh tower.sh"
+echo "----------------------------------------"
