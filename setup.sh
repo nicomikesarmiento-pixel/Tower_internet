@@ -1,21 +1,21 @@
 #!/bin/bash
 
-# --- SARMIENTO AI: FULL TOWER INSTALLER ---
+# --- SARMIENTO AI: FULL TOWER INSTALLER (CURL VERSION) ---
 echo "Inilulunsad ang Sarmiento AI Full Setup..."
 
-# 1. Automatic Cleanup (Para walang conflict sa lumang files)
+# 1. Cleanup
 rm -rf rish rish_shizuku.dex tower.sh
 
-# 2. I-set ang ID para kay Shizuku
+# 2. Set ID
 export RISH_APPLICATION_ID="com.termux"
 
-# 3. I-download ang lahat ng components mula sa repo mo
-echo "Downloading engine components..."
-wget -q https://raw.githubusercontent.com/nicomikesarmiento-pixel/Tower_internet/main/rish
-wget -q https://raw.githubusercontent.com/nicomikesarmiento-pixel/Tower_internet/main/rish_shizuku.dex
-wget -q https://raw.githubusercontent.com/nicomikesarmiento-pixel/Tower_internet/main/tower.sh
+# 3. I-download gamit ang CURL (Mas stable ito sa phone mo)
+echo "Downloading engine components via Curl..."
+curl -L -o rish https://raw.githubusercontent.com/nicomikesarmiento-pixel/Tower_internet/main/rish
+curl -L -o rish_shizuku.dex https://raw.githubusercontent.com/nicomikesarmiento-pixel/Tower_internet/main/rish_shizuku.dex
+curl -L -o tower.sh https://raw.githubusercontent.com/nicomikesarmiento-pixel/Tower_internet/main/tower.sh
 
-# 4. Bigyan ng permission ang mga files
+# 4. Permissions
 chmod +x rish tower.sh
 
 echo "----------------------------------------"
